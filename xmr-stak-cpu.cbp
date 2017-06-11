@@ -11,7 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="config-debug.txt" />
+				<Option parameters="config.txt" />
 				<Compiler>
 					<Add option="-std=c++11" />
 					<Add option="-m64" />
@@ -59,8 +59,8 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-march=haswell" />
 			<Add option="-Wall" />
+			<Add option="-march=native -maes -msse2" />
 		</Compiler>
 		<Linker>
 			<Add library="pthread" />

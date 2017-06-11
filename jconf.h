@@ -56,6 +56,10 @@ public:
 
 	bool PreferIpv4();
 
+	const char* GetProxyAddress();
+	const char* GetProxyLogin();
+	const char* GetProxyPassword();
+
 	inline bool HaveHardwareAes() { return bHaveAes; }
 
 	static void cpuid(uint32_t eax, int32_t ecx, int32_t val[4]);

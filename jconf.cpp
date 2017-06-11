@@ -48,7 +48,7 @@ using namespace rapidjson;
 enum configEnum { aCpuThreadsConf, sUseSlowMem, bNiceHashMode,
 	bTlsMode, bTlsSecureAlgo, sTlsFingerprint, sPoolAddr, sWalletAddr, sPoolPwd,
 	iCallTimeout, iNetRetry, iGiveUpLimit, iVerboseLevel, iAutohashTime,
-	sOutputFile, iHttpdPort, bPreferIpv4 };
+	sOutputFile, iHttpdPort, bPreferIpv4, sProxyAddr, sProxyLogin, sProxyPwd };
 
 struct configVal {
 	configEnum iName;
@@ -75,7 +75,10 @@ configVal oConfigValues[] = {
 	{ iAutohashTime, "h_print_time", kNumberType },
 	{ sOutputFile, "output_file", kStringType },
 	{ iHttpdPort, "httpd_port", kNumberType },
-	{ bPreferIpv4, "prefer_ipv4", kTrueType }
+	{ bPreferIpv4, "prefer_ipv4", kTrueType },
+	{ sProxyAddr, "proxy_address", kStringType },
+	{ sProxyLogin, "proxy_login", kStringType },
+	{ sProxyPwd, "proxy_password", kStringType },
 };
 
 constexpr size_t iConfigCnt = (sizeof(oConfigValues)/sizeof(oConfigValues[0]));
@@ -196,6 +199,21 @@ const char* jconf::GetPoolPwd()
 const char* jconf::GetWalletAddress()
 {
 	return prv->configValues[sWalletAddr]->GetString();
+}
+
+const char* jconf::GetProxyAddress()
+{
+	return prv->configValues[sProxyAddr]->GetString();
+}
+
+const char* jconf::GetProxyLogin()
+{
+	return prv->configValues[sProxyLogin]->GetString();
+}
+
+const char* jconf::GetProxyPassword()
+{
+	return prv->configValues[sProxyPwd]->GetString();
 }
 
 bool jconf::PreferIpv4()
